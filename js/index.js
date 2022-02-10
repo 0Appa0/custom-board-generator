@@ -215,8 +215,6 @@ function handleUpPress() {
   initElement.classList.add('checked')
   currentElement.setAttribute('unchecked', 'true')
 
-  checkForWinner()
-
   initElement.animate([
     // keyframes
     { transform: 'translateY(100%)' },
