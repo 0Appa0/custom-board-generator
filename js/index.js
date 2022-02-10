@@ -98,6 +98,10 @@ function handleKeyPress(e) {
       handleUpPress()
       return
       break;
+    case 'arrowup':
+      handleUpPress()
+      return
+      break;
     case 's':
       handleDownPrress()
       return
@@ -137,7 +141,7 @@ function handleDownPrress() {
     { transform: 'translateY(0)' }
   ], {
     // timing options
-    duration: 200,
+    duration: 150,
   })
 
   checkForWinner()
@@ -164,7 +168,7 @@ function handleLeftPress() {
     { transform: 'translateX(0)' }
   ], {
     // timing options
-    duration: 200,
+    duration: 150,
   })
 
   checkForWinner()
@@ -193,7 +197,7 @@ function handleRightPress() {
     { transform: 'translateX(0)' }
   ], {
     // timing options
-    duration: 200,
+    duration: 150,
   })
 
   checkForWinner()
@@ -221,7 +225,7 @@ function handleUpPress() {
     { transform: 'translateY(0)' }
   ], {
     // timing options
-    duration: 200,
+    duration: 150,
   })
 
   checkForWinner()
