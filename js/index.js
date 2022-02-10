@@ -205,7 +205,7 @@ function handleUpPress() {
   let allEm = adjacentElements()
 
   let index = Array.prototype.indexOf.call(allEm, initElement)
-  if((index + Number(rv)) > (Number(rv) * Number(cv)))
+  if((index + Number(rv)) >= (Number(rv) * Number(cv)))
     return
   let currentElement = allEm[index+Number(rv)]
 

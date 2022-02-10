@@ -5,6 +5,7 @@
 
 body {
   overflow: hidden;
+  display: flex;
 }
 
 body #board-size {
@@ -18,10 +19,13 @@ body #board-size {
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 }
 body #main-body{
-  grid-gap: 10px;
-  height: fill-available;
-  height: -webkit-fill-available;
-  padding: 1rem;
+  grid-gap: 5px;
+  height: 90%;
+  aspect-ratio: 1;
+  margin: auto;
+  border: 30px solid white;
+  border-image: url('https://images.pexels.com/photos/326311/pexels-photo-326311.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500') 30 round;
+  overflow: auto;
 }
 
 body #board-size p {
@@ -29,14 +33,30 @@ body #board-size p {
 }
 
 body .element {
-  box-shadow: rgba(17, 17, 26, 0.3) 0px 0px 16px;
+  /* box-shadow: rgba(17, 17, 26, 0.3) 0px 0px 16px; */
   display: flex;
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  border: 1px solid whitesmoke;
-  /* background: url('https://images.pexels.com/photos/326311/pexels-photo-326311.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'); */
-  /* color: white; */
+  /* border: 1px solid whitesmoke; */
+  background: rgb(226, 223, 223);
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 1);
+  z-index: 1;
+  position: relative;
+  color: black;
+}
+
+body .element:before {
+  content: "";
+  position: absolute;
+  background: inherit;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  box-shadow: inset 0 0 200px rgba(255, 255, 255, .2);
+  filter: blur(10px);
 }
 
 div[unchecked] {
@@ -44,4 +64,8 @@ div[unchecked] {
   border-radius: none;
   background: none;
   border: none;
+}
+
+div[unchecked]::before {
+  content: none;
 }
