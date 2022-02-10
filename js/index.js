@@ -51,11 +51,7 @@ function checkCollision(elm1, elm2) {
 }
 
 function initializeGame() {
-  const adjElement  = adjacentElements()
-
-  for (let k=0;k<adjElement.length;k++) {
-    adjElement[k].addEventListener('click', (e) => handleDivClick(e))
-  }
+  document.addEventListener('keypress', handleKeyPress)
 }
 
 
@@ -65,21 +61,6 @@ function initialElement() {
 
 function adjacentElements() {
   return document.getElementsByClassName('element')
-}
-
-function handleDivClick(e) {
-  const currentElement = e.currentTarget
-  const initElement = initialElement()
-
-  if (checkCollision(initElement, currentElement)) {
-    initElement.innerHTML = currentElement.innerHTML
-    currentElement.innerHTML = ''
-    initElement.removeAttribute('unchecked')
-    initElement.classList.add('checked')
-    currentElement.setAttribute('unchecked', 'true')
-
-    checkForWinner()
-  }
 }
 
 function checkForWinner() {
@@ -115,4 +96,141 @@ function arraysEqual(a, b) {
     if (a[i] !== b[i]) return false;
   }
   return true;
+}
+
+function handleKeyPress(e) {
+  switch(e.key.toLowerCase()){
+    case 'w':
+      handleUpPress()
+      return
+      break;
+    case 's':
+      handleDownPrress()
+      return
+      break;
+    case 'd':
+      handleRightPress()
+      return
+      break;
+    case 'a':
+      handleLeftPress()
+      return
+      break;
+    default:
+      return
+  } 
+}
+
+function handleDownPrress() {
+  let initElement = initialElement()
+  let allEm = adjacentElements()
+
+  let index = Array.prototype.indexOf.call(allEm, initElement)
+
+  if((index - rv) < 0)
+    return
+  let currentElement = allEm[index-rv]
+
+  initElement.innerHTML = currentElement.innerHTML
+  currentElement.innerHTML = ''
+  initElement.removeAttribute('unchecked')
+  initElement.classList.add('checked')
+  currentElement.setAttribute('unchecked', 'true')
+
+  initElement.animate([
+    // keyframes
+    { transform: 'translateY(-100%)' },
+    { transform: 'translateY(0)' }
+  ], {
+    // timing options
+    duration: 200,
+  })
+
+  checkForWinner()
+}
+
+function handleLeftPress() {
+  let initElement = initialElement()
+  let allEm = adjacentElements()
+
+  let index = Array.prototype.indexOf.call(allEm, initElement)
+  if(((index%rv) + 1) === Number(rv))
+    return
+  let currentElement = allEm[index+1]
+
+  initElement.innerHTML = currentElement.innerHTML
+  currentElement.innerHTML = ''
+  initElement.removeAttribute('unchecked')
+  initElement.classList.add('checked')
+  currentElement.setAttribute('unchecked', 'true')
+
+  initElement.animate([
+    // keyframes
+    { transform: 'translateX(100%)' },
+    { transform: 'translateX(0)' }
+  ], {
+    // timing options
+    duration: 200,
+  })
+
+  checkForWinner()
+}
+
+
+function handleRightPress() {
+  let initElement = initialElement()
+  let allEm = adjacentElements()
+
+  let index = Array.prototype.indexOf.call(allEm, initElement)
+
+  if(((index%rv) - 1) < 0)
+    return
+  let currentElement = allEm[index-1]
+
+  initElement.innerHTML = currentElement.innerHTML
+  currentElement.innerHTML = ''
+  initElement.removeAttribute('unchecked')
+  initElement.classList.add('checked')
+  currentElement.setAttribute('unchecked', 'true')
+
+  initElement.animate([
+    // keyframes
+    { transform: 'translateX(-100%)' },
+    { transform: 'translateX(0)' }
+  ], {
+    // timing options
+    duration: 200,
+  })
+
+  checkForWinner()
+}
+
+
+function handleUpPress() {
+  let initElement = initialElement()
+  let allEm = adjacentElements()
+
+  let index = Array.prototype.indexOf.call(allEm, initElement)
+  if((index + Number(rv)) > (Number(rv) * Number(cv)))
+    return
+  let currentElement = allEm[index+Number(rv)]
+
+  initElement.innerHTML = currentElement.innerHTML
+  currentElement.innerHTML = ''
+  initElement.removeAttribute('unchecked')
+  initElement.classList.add('checked')
+  currentElement.setAttribute('unchecked', 'true')
+
+  checkForWinner()
+
+  initElement.animate([
+    // keyframes
+    { transform: 'translateY(100%)' },
+    { transform: 'translateY(0)' }
+  ], {
+    // timing options
+    duration: 200,
+  })
+
+  checkForWinner()
 }

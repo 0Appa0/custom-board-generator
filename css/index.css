@@ -4,8 +4,6 @@
 }
 
 body {
-  height: 100vh;
-  width: 100vw;
   overflow: hidden;
 }
 
@@ -17,11 +15,13 @@ body #board-size {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 }
 body #main-body{
-  height: 100%;
-  width: 100%;
+  grid-gap: 10px;
+  height: fill-available;
+  height: -webkit-fill-available;
+  padding: 1rem;
 }
 
 body #board-size p {
@@ -29,9 +29,19 @@ body #board-size p {
 }
 
 body .element {
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-  border-radius: 50px;
+  box-shadow: rgba(17, 17, 26, 0.3) 0px 0px 16px;
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 2rem;
+  border: 1px solid whitesmoke;
+  /* background: url('https://images.pexels.com/photos/326311/pexels-photo-326311.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500'); */
+  /* color: white; */
+}
+
+div[unchecked] {
+  box-shadow: none;
+  border-radius: none;
+  background: none;
+  border: none;
 }
