@@ -1,7 +1,10 @@
+import {handleRightPress, handleLeftPress, handleUpPress, handleDownPrress} from './button-press.js'
+
 document.getElementById('submit-button').addEventListener('click', handleRowColumnValueSubmission)
 
 let rv = 0;
 let cv = 0;
+
 function handleRowColumnValueSubmission() {
   let rowValue = document.getElementById('row').value
   let columnValue = document.getElementById('column').value
@@ -54,179 +57,29 @@ function initializeGame() {
   document.addEventListener('keypress', handleKeyPress)
 }
 
-
-function initialElement() {
-  return document.querySelector('[unchecked="true"]')
-}
-
-function adjacentElements() {
-  return document.getElementsByClassName('element')
-}
-
-function checkForWinner() {
-  const nArray = Array.from(Array(rv * cv).keys())
-  nArray.shift()
-  const allElement = adjacentElements()
-  let newArray = []
-  for(let i=0;i<allElement.length;i++) {
-    newArray[i] = allElement[i].innerHTML
-  }
-
-  if (newArray.indexOf('') === (newArray.length -1 )) {
-    newArray = newArray.filter(item => item).map(k => Number(k))
-  }
-
-  if(arraysEqual(nArray, newArray)) {
-    alert('you won')
-  }
-}
-
-function arraysEqual(a, b) {
-  if (a === b) return true;
-  if (a == null || b == null) return false;
-  if (a.length !== b.length) return false;
-
-  for (var i = 0; i < a.length; ++i) {
-    if (a[i] !== b[i]) return false;
-  }
-  return true;
-}
-
-function handleKeyPress(e) {
+const handleKeyPress = (e) => {
   switch(e.key.toLowerCase()){
     case 'w':
-      handleUpPress()
+      handleUpPress(rv, cv)
       return
       break;
     case 'arrowup':
-      handleUpPress()
+      handleUpPress(rv, cv)
       return
       break;
     case 's':
-      handleDownPrress()
+      handleDownPrress(rv, cv)
       return
       break;
     case 'd':
-      handleRightPress()
+      handleRightPress(rv, cv)
       return
       break;
     case 'a':
-      handleLeftPress()
+      handleLeftPress(rv, cv)
       return
       break;
     default:
       return
   } 
-}
-
-function handleDownPrress() {
-  let initElement = initialElement()
-  let allEm = adjacentElements()
-
-  let index = Array.prototype.indexOf.call(allEm, initElement)
-
-  if((index - rv) < 0)
-    return
-  let currentElement = allEm[index-rv]
-
-  initElement.innerHTML = currentElement.innerHTML
-  currentElement.innerHTML = ''
-  initElement.removeAttribute('unchecked')
-  initElement.classList.add('checked')
-  currentElement.setAttribute('unchecked', 'true')
-
-  initElement.animate([
-    // keyframes
-    { transform: 'translateY(-100%)' },
-    { transform: 'translateY(0)' }
-  ], {
-    // timing options
-    duration: 150,
-  })
-
-  checkForWinner()
-}
-
-function handleLeftPress() {
-  let initElement = initialElement()
-  let allEm = adjacentElements()
-
-  let index = Array.prototype.indexOf.call(allEm, initElement)
-  if(((index%rv) + 1) === Number(rv))
-    return
-  let currentElement = allEm[index+1]
-
-  initElement.innerHTML = currentElement.innerHTML
-  currentElement.innerHTML = ''
-  initElement.removeAttribute('unchecked')
-  initElement.classList.add('checked')
-  currentElement.setAttribute('unchecked', 'true')
-
-  initElement.animate([
-    // keyframes
-    { transform: 'translateX(100%)' },
-    { transform: 'translateX(0)' }
-  ], {
-    // timing options
-    duration: 150,
-  })
-
-  checkForWinner()
-}
-
-
-function handleRightPress() {
-  let initElement = initialElement()
-  let allEm = adjacentElements()
-
-  let index = Array.prototype.indexOf.call(allEm, initElement)
-
-  if(((index%rv) - 1) < 0)
-    return
-  let currentElement = allEm[index-1]
-
-  initElement.innerHTML = currentElement.innerHTML
-  currentElement.innerHTML = ''
-  initElement.removeAttribute('unchecked')
-  initElement.classList.add('checked')
-  currentElement.setAttribute('unchecked', 'true')
-
-  initElement.animate([
-    // keyframes
-    { transform: 'translateX(-100%)' },
-    { transform: 'translateX(0)' }
-  ], {
-    // timing options
-    duration: 150,
-  })
-
-  checkForWinner()
-}
-
-
-function handleUpPress() {
-  let initElement = initialElement()
-  let allEm = adjacentElements()
-
-  let index = Array.prototype.indexOf.call(allEm, initElement)
-  if((index + Number(rv)) >= (Number(rv) * Number(cv)))
-    return
-  let currentElement = allEm[index+Number(rv)]
-
-  initElement.innerHTML = currentElement.innerHTML
-  currentElement.innerHTML = ''
-  initElement.removeAttribute('unchecked')
-  initElement.classList.add('checked')
-  currentElement.setAttribute('unchecked', 'true')
-
-  initElement.animate([
-    // keyframes
-    { transform: 'translateY(100%)' },
-    { transform: 'translateY(0)' }
-  ], {
-    // timing options
-    duration: 150,
-  })
-
-  checkForWinner()
 }

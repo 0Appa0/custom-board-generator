@@ -23,7 +23,7 @@ body #main-body{
   height: 90%;
   aspect-ratio: 1;
   margin: auto;
-  border: 30px solid white;
+  border: 30px outset;
   border-image: url('https://images.pexels.com/photos/326311/pexels-photo-326311.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500') 30 round;
   overflow: auto;
 }
@@ -33,7 +33,6 @@ body #board-size p {
 }
 
 body .element {
-  /* box-shadow: rgba(17, 17, 26, 0.3) 0px 0px 16px; */
   display: flex;
   justify-content: center;
   align-items: center;
