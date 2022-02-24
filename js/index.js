@@ -1,4 +1,5 @@
 import {handleRightPress, handleLeftPress, handleUpPress, handleDownPrress} from './button-press.js'
+import {initializeAutoSolver} from "./auto-solver.js"
 
 document.getElementById('submit-button').addEventListener('click', handleRowColumnValueSubmission)
 
@@ -55,6 +56,7 @@ function checkCollision(elm1, elm2) {
 
 function initializeGame() {
   document.addEventListener('keypress', handleKeyPress)
+  // initializeAutoSolver(rv, cv)
 }
 
 const handleKeyPress = (e) => {
